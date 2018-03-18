@@ -7,7 +7,11 @@ import "./TodoPanel.css";
 const TodoPanel = props => (
     <Col xs={9} className="todo-panel">
         <Row>
-            {props.tasks.map(e => <Task task={e}/>)}
+            {props.tasks.map(e => <Task 
+                task={e}
+                key={e.id}
+                handler={props.handler}
+            />)}
         </Row>
     </Col>
 );

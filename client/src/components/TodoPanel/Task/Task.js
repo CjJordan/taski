@@ -5,8 +5,10 @@ import "./Task.css";
 
 const Task = props => (
     <Col xs={12}>
-        <span className={props.task.complete ? "strike": ""}> 
-       {props.task.title} 
+        <span 
+            className={props.task.complete ? "strike": ""}
+            onClick={()=>props.handler(props.task.id)}> 
+            {props.task.title} 
        </span>
     </Col>
 );
