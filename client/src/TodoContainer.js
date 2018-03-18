@@ -18,14 +18,28 @@ const tasks =  [
 
 class TodoContainer extends Component {
     state = {
-      tags: ['spanish', 'housework', 'social', 'fitness', 'web dev']
+      tags: [
+        {title: 'spanish', checked: false}, 
+        {title: 'housework', checked: false}, 
+        {title: 'social', checked: false}, 
+        {title: 'fitness', checked: false}
+      ]
     };
+
+    toggleTag = (event) => {
+      const tags = [...this.state.tags];
+      const i = tags.findIndex(e => e.title === event.target.value);
+
+      tags[i].checked = !tags[i].checked
+      this.setState({tags});
+    }
   
     render() {
+      console.log("state", this.state);
       return (
         <Grid fluid>
               <Row>
-                <TagPanel tags={this.state.tags}/>
+                <TagPanel tags={this.state.tags} handler={this.toggleTag}/>
                 <TodoPanel />
                 <MenuPanel />
               </Row>

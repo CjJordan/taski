@@ -4,7 +4,7 @@ import "./Tag.css";
 
 const TagPanel = props => (
     <Col xs={12}>
-        <input className="tag" type="checkbox" id={props.tag} name={props.tag}  value={props.tag} />
+        <input className="tag" type="checkbox" id={props.tag} name={props.tag}  value={props.tag} onChange = {props.handler}/>
         <label for={props.tag} >{props.tag} </label>
     </Col>
 );

@@ -5,7 +5,7 @@ import "./TagPanel.css";
 
 const TagPanel = props => (
     <Col xs={2} className="tag-panel">
-        {props.tags.map(e => <Tag tag={e}/>)}
+        {props.tags.map(e => <Tag tag={e.title} handler={props.handler}/>)}
     </Col>
 );
 
