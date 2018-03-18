@@ -1,19 +1,20 @@
 import React, {Component} from "react";
 import { Grid, Row, Col } from 'react-bootstrap';
+import API from "./utils/API";
 import TagPanel from './components/TagPanel';
 import TodoPanel from './components/TodoPanel';
 import MenuPanel from './components/MenuPanel';
 
 const tasksArr =  [
-  {id: 0, title:"spin class" , tags:["social", "fitness"], complete: false},
-  {id: 1, title:"julia's party" , tags:["social"], complete: true},
-  {id: 2, title:"spanish meetup" , tags:["social", "spanish"], complete: false},
-  {id: 3, title:"duolingo" , tags:["spanish"], complete: false},
-  {id: 4, title:"lift weights" , tags:["fitness"], complete: true},
-  {id: 5, title:"laundry" , tags:["housework"], complete: false},
-  {id: 6, title:"dishes" , tags:["housework"], complete: false},
-  {id: 7, title:"vacuum" , tags:["housework"], complete: false},
-  {id: 8, title:"walk 606 with Shamika" , tags:["fitness", "social"], complete: false}
+  {id: 0, title:"spin class" , tags:["social", "fitness"], complete: false, date:"2018-03-14 18:40:07.142Z"},
+  {id: 1, title:"julia's party" , tags:["social"], complete: true, date:"2018-03-18 18:40:07.142Z"},
+  {id: 2, title:"spanish meetup" , tags:["social", "spanish"], complete: false, date:"2018-03-18 18:40:07.142Z"},
+  {id: 3, title:"duolingo" , tags:["spanish"], complete: false, date:"2018-03-17 18:40:07.142Z"},
+  {id: 4, title:"lift weights" , tags:["fitness"], complete: true, date:"2018-03-18 18:40:07.142Z"},
+  {id: 5, title:"laundry" , tags:["housework"], complete: false, date:"2018-03-18 19:40:07.142Z"},
+  {id: 6, title:"dishes" , tags:["housework"], complete: false, date:"2018-03-18 18:40:07.142Z"},
+  {id: 7, title:"vacuum" , tags:["housework"], complete: false, date:"2018-03-19 18:40:07.142Z"},
+  {id: 8, title:"walk 606 with Shamika" , tags:["fitness", "social"], complete: false, date:"2018-03-20 18:40:07.142Z"}
 ];
 
 class TodoContainer extends Component {
@@ -25,6 +26,16 @@ class TodoContainer extends Component {
         {title: 'fitness', checked: false}
       ],
       tasks: []
+    };
+
+    componentDidMount() {
+      this.loadTasks();
+    }
+
+    loadTasks = () => {
+      API.getTasks()
+        .then(res =>this.setState({ tasks: res.data}))
+        .catch(err => console.log(err));
     };
 
     toggleTag = (event) => {
